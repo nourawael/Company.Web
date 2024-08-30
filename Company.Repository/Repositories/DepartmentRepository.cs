@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Company.Repository.Repositories
 {
-    internal class DepartmentRepository:GenericRepository<Department>, IDepartmentRepository
+    public class DepartmentRepository:GenericRepository<Department>, IDepartmentRepository
     {
         private readonly CompanyDbContext _context;
 
