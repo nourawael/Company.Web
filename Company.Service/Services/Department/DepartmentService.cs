@@ -20,7 +20,12 @@ namespace Company.Service.Services
         }
         public void Add(Department department)
         {
-            throw new NotImplementedException();
+            var mappedDepartment = new Department { 
+                Code= department.Code,
+                Name= department.Name,
+                CreateAt= DateTime.Now
+            };
+            _departmentRepository.Add(mappedDepartment);
         }
 
         public void Delete(Department department)
