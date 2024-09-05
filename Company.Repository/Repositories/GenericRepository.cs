@@ -36,6 +36,10 @@ namespace Company.Repository.Repositories
         => _context.Set<T>().Find(id);
 
         public void Update(T entity)
-        => _context.Set<T>().Update(entity);
+        {
+            _context.Set<T>().Update(entity);
+            _context.SaveChanges();
+
+        }
     }
 }
