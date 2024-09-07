@@ -19,7 +19,7 @@ namespace Company.Web.Controllers
         }
       
 
-       [HttpGet]
+     
         public IActionResult Index(string searchInp)
         {
             IEnumerable<EmployeeDto> employees = new List<EmployeeDto>();
@@ -33,12 +33,14 @@ namespace Company.Web.Controllers
             return View(employees);
 
         }
+
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Departments=_departmentService.GetAll();
+            ViewBag.departments = _departmentService.GetAll();
             return View();
         }
+       
         [HttpPost]
         public IActionResult Create(EmployeeDto employee)
         {

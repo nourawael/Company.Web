@@ -18,8 +18,8 @@ namespace Company.Service.Interfaces.Employee.Dto
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public IFormFile Image { get; set; }
-        public string ImageUrl { get; set; }
-        public DepartmentDto Department { get; set; }
+        public string? ImageUrl { get; set; }
+        public DepartmentDto? Department { get; set; }
         public int? DepartmentId { get; set; }
         public DateTime CreateAt { get; set; }
     }
