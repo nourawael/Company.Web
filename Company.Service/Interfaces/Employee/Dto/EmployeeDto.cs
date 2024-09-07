@@ -1,4 +1,5 @@
 ﻿using Company.Service.Interfaces.Department.Dto;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,8 @@ namespace Company.Service.Interfaces.Employee.Dto
         public decimal Salary { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public DateTime ImageUrl { get; set; }
+        public IFormFile Image { get; set; }
+        public string ImageUrl { get; set; }
         public DepartmentDto Department { get; set; }
         public int? DepartmentId { get; set; }
         public DateTime CreateAt { get; set; }
