@@ -1,6 +1,8 @@
 ﻿using Company.Data.Entities;
 using Company.Service.Interfaces;
+using Company.Service.Interfaces.Employee.Dto;
 using Company.Service.Services;
+using Company.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.Web.Controllers
@@ -20,7 +22,7 @@ namespace Company.Web.Controllers
        [HttpGet]
         public IActionResult Index(string searchInp)
         {
-            IEnumerable<Employee> employees = new List<Employee>();
+            IEnumerable<EmployeeDto> employees = new List<EmployeeDto>();
             if (string.IsNullOrEmpty(searchInp))
             
                 employees = _employeeService.GetAll();
@@ -38,7 +40,7 @@ namespace Company.Web.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Employee employee)
+        public IActionResult Create(EmployeeDto employee)
         {
            
             try

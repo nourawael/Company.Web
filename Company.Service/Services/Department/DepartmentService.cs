@@ -2,6 +2,7 @@
 using Company.Data.Entities;
 using Company.Repository.Interfaces;
 using Company.Service.Interfaces;
+using Company.Service.Interfaces.Department.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,10 @@ namespace Company.Service.Services
         {
            _unitOfWork = unitOfWork;
         }
-        public void Add(Department department)
+        public void Add(DepartmentDto department)
         {
-            var mappedDepartment = new Department { 
+            var mappedDepartment = new DepartmentDto
+            { 
                 Code= department.Code,
                 Name= department.Name,
                 CreateAt= DateTime.Now
@@ -29,20 +31,20 @@ namespace Company.Service.Services
             _unitOfWork.Complete();
         }
 
-        public void Delete(Department department)
+        public void Delete(DepartmentDto department)
         {
             _unitOfWork.DepartmentRepository.Delete(department);
             _unitOfWork.Complete();
 
         }
 
-        public IEnumerable<Department> GetAll()
+        public IEnumerable<DepartmentDto> GetAll()
         {
             var departments = _unitOfWork.DepartmentRepository.GetAll();
             return departments;
         }
 
-        public Department GetById(int? id)
+        public DepartmentDto GetById(int? id)
         {
             if (id is null)
                 return null;
@@ -55,7 +57,7 @@ namespace Company.Service.Services
             return department;
         }
 
-        public void Update(Department department)
+        public void Update(DepartmentDto department)
         {
 
             _unitOfWork.DepartmentRepository.Update(department);
