@@ -4,7 +4,6 @@ using Company.Repository.Repositories;
 using Company.Service.Interfaces;
 using Company.Service.Mapping;
 using Company.Service.Services;
-using Company.Service.Services.Employee;
 using Microsoft.EntityFrameworkCore;
 
 namespace Company.Web
@@ -29,6 +28,8 @@ namespace Company.Web
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
             builder.Services.AddAutoMapper(x=> x.AddProfile(new EmployeeProfile()));
+            builder.Services.AddAutoMapper(x=> x.AddProfile(new DepartmentProfile()));
+            
 
             var app = builder.Build();
 
