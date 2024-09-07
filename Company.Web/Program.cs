@@ -2,6 +2,7 @@ using Company.Data.Contexts;
 using Company.Repository.Interfaces;
 using Company.Repository.Repositories;
 using Company.Service.Interfaces;
+using Company.Service.Mapping;
 using Company.Service.Services;
 using Company.Service.Services.Employee;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,7 @@ namespace Company.Web
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+            builder.Services.AddAutoMapper(x=> x.AddProfile(new EmployeeProfile()));
 
             var app = builder.Build();
 
