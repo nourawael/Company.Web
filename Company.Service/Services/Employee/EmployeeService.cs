@@ -1,13 +1,14 @@
 ﻿using Company.Data.Entities;
 using Company.Repository.Interfaces;
 using Company.Service.Interfaces;
+using Company.Service.Interfaces.Employee.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Company.Service.Services.Employee
+namespace Company.Service.Services
 {
     public class EmployeeService : IEmployeeService
     {
@@ -17,24 +18,64 @@ namespace Company.Service.Services.Employee
         {
             _unitOfWork = unitOfWork;
         }
-        public void Add(Data.Entities.Employee employee)
+        public void Add(EmployeeDto employeeDto)
         {
-            throw new NotImplementedException();
+            Employee employee = new Employee 
+            {
+                Address= employeeDto.Address,
+                Age= employeeDto.Age,
+                DepartmentId= employeeDto.DepartmentId,
+                Email= employeeDto.Email,
+                ImageUrl= employeeDto.ImageUrl,
+                Name= employeeDto.Name,
+                PhoneNumber= employeeDto.PhoneNumber,
+                Salary= employeeDto.Salary,
+             
+            };
+
+            _unitOfWork.EmployeeRepository.Add(employee);
+            _unitOfWork.Complete();
+            
         }
 
-        public void Delete(Data.Entities.Employee employee)
+        public void Delete(EmployeeDto employeeDto)
         {
+            Employee employee = new Employee
+            {
+                Address = employeeDto.Address,
+                Age = employeeDto.Age,
+                DepartmentId = employeeDto.DepartmentId,
+                Email = employeeDto.Email,
+                ImageUrl = employeeDto.ImageUrl,
+                Name = employeeDto.Name,
+                PhoneNumber = employeeDto.PhoneNumber,
+                Salary = employeeDto.Salary,
+
+            };
             _unitOfWork.EmployeeRepository.Delete(employee);
             _unitOfWork.Complete();
         }
 
-        public IEnumerable<Data.Entities.Employee> GetAll()
+        public IEnumerable<EmployeeDto> GetAll()
         {
             var employees = _unitOfWork.EmployeeRepository.GetAll();
-            return employees;
+            var mappedEmployees = employees.Select(x => new EmployeeDto
+            {
+                DepartmentId= x.DepartmentId,
+                Email= x.Email,
+                ImageUrl= x.ImageUrl,
+                Name= x.Name,
+                PhoneNumber= x.PhoneNumber,
+                Salary= x.Salary,
+                Id= x.Id,
+                Address= x.Address,
+                Age= x.Age,
+                CreateAt= x.CreateAt,
+            });
+            return mappedEmployees;
         }
 
-        public Data.Entities.Employee GetById(int? id)
+        public EmployeeDto GetById(int? id)
         {
             if (id is null)
                 return null;
@@ -44,15 +85,45 @@ namespace Company.Service.Services.Employee
             if (employee == null)
                 return null;
 
-            return employee;
+            EmployeeDto employeeDto = new EmployeeDto
+            {
+                Address = employee.Address,
+                Age = employee.Age,
+                DepartmentId = employee.DepartmentId,
+                Email = employee.Email,
+                ImageUrl = employee.ImageUrl,
+                Name = employee.Name,
+                PhoneNumber = employee.PhoneNumber,
+                Salary = employee.Salary,
+
+            };
+
+            return employeeDto;
         }
 
-        public IEnumerable<Data.Entities.Employee> GetEmployeeByName(string name)
-        => _unitOfWork.EmployeeRepository.GetEmployeeByName(name);
-
-        public void Update(Data.Entities.Employee employee)
+        public IEnumerable<EmployeeDto> GetEmployeeByName(string name)
         {
-            _unitOfWork.EmployeeRepository.Update(employee);
+            var employees = _unitOfWork.EmployeeRepository.GetEmployeeByName(name);
+            var mappedEmployees = employees.Select(x => new EmployeeDto
+            {
+                DepartmentId = x.DepartmentId,
+                Email = x.Email,
+                ImageUrl = x.ImageUrl,
+                Name = x.Name,
+                PhoneNumber = x.PhoneNumber,
+                Salary = x.Salary,
+                Id = x.Id,
+                Address = x.Address,
+                Age = x.Age,
+                CreateAt = x.CreateAt,
+            });
+            return mappedEmployees;
+        }
+
+        public void Update(EmployeeDto employeeDto)
+        {
+            
+           // _unitOfWork.EmployeeRepository.Update(employee);
             _unitOfWork.Complete();
         }
     }
