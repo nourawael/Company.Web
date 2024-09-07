@@ -8,10 +8,12 @@ namespace Company.Web.Controllers
     public class EmployeeController : Controller
     {
         private readonly IEmployeeService _employeeService;
+        private readonly IDepartmentService _departmentService;
 
-        public EmployeeController(IEmployeeService employeeService)
+        public EmployeeController(IEmployeeService employeeService, IDepartmentService departmentService)
         {
             _employeeService = employeeService;
+            _departmentService = departmentService;
         }
       
 
@@ -32,6 +34,7 @@ namespace Company.Web.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewBag.Departments=_departmentService.GetAll();
             return View();
         }
         [HttpPost]
