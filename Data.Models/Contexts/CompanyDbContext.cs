@@ -1,15 +1,17 @@
 ﻿using Company.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace Company.Data.Contexts
 {
-    public class CompanyDbContext : DbContext
+    public class CompanyDbContext : IdentityDbContext<ApplicationUser>
     {
         public CompanyDbContext(DbContextOptions<CompanyDbContext> options) : base(options)
         {
