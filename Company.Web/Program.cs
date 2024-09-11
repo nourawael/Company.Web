@@ -34,6 +34,7 @@ namespace Company.Web
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(config => {
                 config.Password.RequiredUniqueChars = 2;
                 config.Password.RequireDigit=true;
+                config.Password.RequiredLength=6;
                 config.Password.RequireLowercase=true;
                 config.Password.RequireUppercase=true;
                 config.Password.RequireNonAlphanumeric=true;
