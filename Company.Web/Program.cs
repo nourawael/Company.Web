@@ -53,7 +53,7 @@ namespace Company.Web
                 options.LoginPath = "/Account/Login";
                 options.LogoutPath = "/Account/Logout";
                 options.AccessDeniedPath = "/Account/AccessDenied";
-                options.Cookie.Name = "Hamada Cookies";
+                options.Cookie.Name = "HamadaCookies";
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                 options.Cookie.SameSite = SameSiteMode.Strict;
             });
