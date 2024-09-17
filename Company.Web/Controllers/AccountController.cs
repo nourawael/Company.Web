@@ -78,5 +78,15 @@ namespace Company.Web.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction(nameof(Login));
         }
+
+        public IActionResult ForgetPassword() 
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ForgetPassword(ForgetPasswordViewModel input)
+        {
+            return View();
+        }
     }
 }
