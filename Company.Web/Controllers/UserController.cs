@@ -25,5 +25,15 @@ namespace Company.Web.Controllers
 
             return View(users);
         }
+        public async Task<IActionResult> Details(string id, string viewName = "Details")
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user is null)
+                return NotFound();
+
+            return View(viewName, user);
+        }
+
     }
 }
