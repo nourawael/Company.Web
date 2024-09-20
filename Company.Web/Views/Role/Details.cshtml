@@ -1,0 +1,15 @@
+﻿@model RoleUpdateViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Role Details</h1>
+
+<div class="form-group">
+    <partial name="PartialViews/DetailsDeletePartialView" model="@Model" />    
+</div>
+<div class="form-group">
+    <a asp-action="Update" asp-route-id="Id">Edit</a>
+    <a asp-action="Index" >Back To List</a>
+</div>
+       
